@@ -1,0 +1,16 @@
+---
+- name: install Game of life on Tomcat
+  hosts: all
+  become: yes
+  tasks:
+    - name: update packages
+      apt:
+        update_cache: yes
+    - name: install openjdk-8-jdk
+      apt:
+        name: openjdk-8-jdk
+        state: present
+    - name: install tomcat8
+      apt:
+        name: tomcat8
+        state: present
