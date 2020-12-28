@@ -1,0 +1,41 @@
+---
+- name: install lamp on centos7
+  hosts: all
+  become: yes
+  tasks:
+    - name: install the latest version of apache
+      yum:
+        name: httpd
+        state: latest
+    - name: start service httpd, if not started
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: install mariadb-server mariadb
+      yum:
+        name:
+          - mariadb-server
+          - mariadb
+        state: present
+    - name: start service mariadb, if not started
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+    - name: install php and its modules
+      yum:
+        name:
+          - php
+          - php-mysql
+          - php-fpm
+        state: present
+    - name: restart the httpd service
+      service:
+        name: httpd
+        state: restarted
+    - name: creating info.php file
+      copy:
+        dest: "/var/www/html/info.php"
+        content:
+          <?php phpinfo(); ?>

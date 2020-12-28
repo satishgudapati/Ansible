@@ -1,5 +1,5 @@
 ---
-- name: install Game of life on Tomcat
+- name: Deploy Game of life on Tomcat
   hosts: all
   become: yes
   tasks:
