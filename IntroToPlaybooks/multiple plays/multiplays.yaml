@@ -1,0 +1,35 @@
+---
+  - name: install git, tree and nano on all machines
+    hosts: all
+    become: yes
+    tasks:
+      - name: install git, tree and nano
+        package:
+          name:
+            - git
+            - tree
+            - nano
+          state: present
+  
+  - name: install apache on centos
+    hosts: centos
+    become: yes
+    tasks:
+      - name: install httpd
+        package:
+          name: httpd
+          state: present
+      - name: start and enable service httpd
+        service:
+          name: httpd
+          state: started
+          enabled: yes
+
+  - name: install java on ubuntu
+    hosts: ubuntu
+    become: yes
+    tasks:
+      - name: install java
+        package:
+          name: openjdk-8-jdk
+          state: present
