@@ -16,7 +16,7 @@
     become: yes
     tasks:
       - name: install httpd
-        package:
+        yum:
           name: httpd
           state: present
       - name: start and enable service httpd
@@ -30,6 +30,6 @@
     become: yes
     tasks:
       - name: install java
-        package:
+        apt:
           name: openjdk-8-jdk
           state: present
