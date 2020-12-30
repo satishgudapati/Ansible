@@ -2,7 +2,20 @@
 - name: install lamp stack
   hosts: webserver
   tasks:
-    - name: install httpd on centos and apache2 on ubuntu
-      package: name="{{package_name}}" state=present
+    - name: Step One — Install Apache
+      package: name="{{apache_package}}" state=present
     - name: start and enable httpd and apache
-      service: name="{{package_name}}" state=started enabled=yes
+      service: name="{{apache_package}}" state=started enabled=yes
+    - name: Step Two — Install MySQL (MariaDB)
+      package: name="{{mysql_package}}"
+    - name: start and enable MySQL (MariaDB)
+      service: name="{{mysql_service}}" state=started enabled=yes
+    - name: Step Three — Install PHP
+      package: name="{{php_package}}" state=present
+    - name: restart apache
+      service: name="{{apache_package}}" state=restarted
+    - name: Step Four — Test PHP Processing on your Web Server by copying info.php
+      copy:
+      dest: "/var/www/html/info.php"
+      content:
+        <?php phpinfo(); ?>      
