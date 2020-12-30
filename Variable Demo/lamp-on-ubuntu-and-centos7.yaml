@@ -8,7 +8,7 @@
     - name: start and enable httpd and apache
       service: name="{{apache_package}}" state=started enabled=yes
     - name: Step Two — Install MySQL (MariaDB)
-      package: name="{{mysql_package}}"
+      package: name="{{mysql_package}}" state=present
     - name: start and enable MySQL (MariaDB)
       service: name="{{mysql_service}}" state=started enabled=yes
     - name: Step Three — Install PHP
