@@ -6,8 +6,8 @@ localhost
 172.31.37.149
 
 [webserver]
-172.31.37.149
-172.31.6.100
+172.31.37.149 package_name=apache2
+172.31.6.100 package_name=httpd
 
 [appserver]
 172.31.37.149
