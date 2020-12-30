@@ -1,6 +1,7 @@
 ---
 - name: install lamp stack
   hosts: webserver
+  become: yes
   tasks:
     - name: Step One — Install Apache
       package: name="{{apache_package}}" state=present
@@ -13,4 +14,9 @@
     - name: Step Three — Install PHP
       package: name="{{php_package}}" state=present
     - name: restart apache
-      service: name="{{apache_package}}" state=restarted  
+      service: name="{{apache_package}}" state=restarted
+    - name: Step Four — Test PHP Processing on your Web Server by copying info.php
+      copy:
+      dest: "/var/www/html/info.php"
+      content:
+        <?php phpinfo(); ?>
