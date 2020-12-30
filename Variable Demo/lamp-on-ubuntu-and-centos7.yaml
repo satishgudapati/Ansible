@@ -1,0 +1,8 @@
+---
+- name: install lamp stack
+  hosts: webserver
+  tasks:
+    - name: install httpd on centos and apache2 on ubuntu
+      package: name="{{package_name}}" state=present
+    - name: start and enable httpd and apache
+      service: name="{{}package_name}" state=started enabled=yes
