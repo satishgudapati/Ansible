@@ -19,6 +19,6 @@
         state: restarted
     - name: Step Four —Test PHP Processing on your Web Server by copying info.php
       copy:
-      dest: "/var/www/html/info.php"
-      content:
-        <?php phpinfo(); ?>
+        dest: "/var/www/html/info.php"
+        content:
+          <?php phpinfo(); ?>
