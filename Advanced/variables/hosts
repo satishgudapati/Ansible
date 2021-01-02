@@ -1,9 +1,9 @@
 [centos]
 localhost
-172.31.44.186
+172.31.44.186 ansible_user=node-1
 
 [ubuntu]
-172.31.37.240
+172.31.37.240 ansible_user=node-2
 
 [webserver]
 localhost
