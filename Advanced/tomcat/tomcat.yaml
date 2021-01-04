@@ -9,3 +9,18 @@
         update_cache: yes
         state: present
       when: ansible_facts['os_family'] == "Debian"
+
+    - name: Step 2 — Create Tomcat Group
+      group:
+        name: tomcat
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Step 3 — Create Tomcat User
+      user:
+        name: tomcat
+        group: tomcat
+        home: /opt/tomcat
+        shell: "/bin/false"
+        state: present
+      when: ansible_facts['os_family'] == "Debian"

@@ -3,9 +3,27 @@
   hosts: appserver
   become: yes
   tasks:
+    - name: Step 3 — Create Tomcat User
+      user:
+        name: tomcat
+        group: tomcat
+        home: /opt/tomcat
+        shell: "/bin/false"
+        state: absent
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Step 2 — Create Tomcat Group
+      group:
+        name: tomcat
+        state: abesent
+      when: ansible_facts['os_family'] == "Debian"
+
     - name: Step 1 — unInstall Java
       apt:
         name: default-jdk
         update_cache: yes
         state: absent
       when: ansible_facts['os_family'] == "Debian"
+
+
+
