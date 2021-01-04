@@ -3,7 +3,7 @@
   hosts: appserver
   become: yes
   tasks:
-    - name: Step 3 — Create Tomcat User
+    - name: Step 3 — Destroy Tomcat User
       user:
         name: tomcat
         group: tomcat
@@ -12,13 +12,13 @@
         state: absent
       when: ansible_facts['os_family'] == "Debian"
 
-    - name: Step 2 — Create Tomcat Group
+    - name: Step 2 — Destroy Tomcat Group
       group:
         name: tomcat
         state: absent
       when: ansible_facts['os_family'] == "Debian"
 
-    - name: Step 1 — unInstall Java
+    - name: Step 1 — Uninstall Java
       apt:
         name: default-jdk
         update_cache: yes

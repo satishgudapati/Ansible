@@ -18,7 +18,7 @@
         home: /opt/tomcat
         shell: "/bin/false"
     
-    - name: Step 4 — Install Tomcat
+    - name: Step 4 — Download Tomcat tar file
       get_url:
         url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
         dest: /tmp/apache-tomcat-9.0.41.tar.gz
