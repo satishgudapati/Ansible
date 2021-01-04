@@ -15,10 +15,5 @@
     - name: Step 4 — Download Tomcat tar file
       get_url: url="https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz" dest="/tmp/apache-tomcat-9.0.41.tar.gz"
     
-    - name: Creates directory
-      file:
-        path: /opt/tomcat
-        state: directory
-
     - name: Step 5 - extract the archive to /opt/tomcat directory
-      unarchive: src="/tmp/apache-tomcat-9.0.41.tar.gz" dest="/opt/tomcat"
+      unarchive: src=/tmp/apache-tomcat-9.0.41.tar.gz dest=/opt/tomcat
