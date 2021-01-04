@@ -3,20 +3,26 @@
   hosts: appserver
   become: yes
   tasks:
-    - name: Step 1 — Install Java
+    - name: Step 1 — Install Java on Ubuntu
       apt:
         name: default-jdk
         update_cache: yes
         state: present
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_facts['distribution'] == "Debian"
+
+    - name: Step 1 — Install Java on Centos7
+      yum:
+        name: java-1.7.0-openjdk-devel
+        update_cache: yes
+        state: present
+      when: ansible_facts['distribution'] == "CentOS"
 
     - name: Step 2 — Create Tomcat Group
       group:
         name: tomcat
         state: present
-      when: ansible_facts['os_family'] == "Debian"
 
-    - name: Step 3 — Create Tomcat User
+    - name: Step 3 — Create Tomcat User in Ubuntu
       user:
         name: tomcat
         group: tomcat
@@ -25,17 +31,31 @@
         state: present
       when: ansible_facts['os_family'] == "Debian"
 
+    - name: Step 3 — Create Tomcat User in CentOS7
+      user:
+        name: tomcat
+        group: tomcat
+        home: /opt/tomcat
+        shell: "/bin/nologin"
+        state: present
+      when: ansible_facts['os_family'] == "CentOS"
+
     - name: Step 4 — Download Tomcat tar file
       get_url:
         url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
         dest: /tmp/apache-tomcat-9.0.41.tar.gz
       when: ansible_facts['os_family'] == "Debian"
+
+    - name: Step 4 — Download Tomcat tar file
+      get_url:
+        url: wget https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz
+        dest: /tmp/apache-tomcat-9.0.41.tar.gz
+      when: ansible_facts['os_family'] == "CentOS"
     
     - name: Step 5 - extract the archive to /opt/tomcat directory
       unarchive:
         src: /tmp/apache-tomcat-9.0.41.tar.gz
         dest: /opt/tomcat
-      when: ansible_facts['os_family'] == "Debian"
 
     - name: Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
       file:
@@ -44,4 +64,3 @@
         recurse: yes
         owner: tomcat
         group: tomcat
-      when: ansible_facts['os_family'] == "Debian"
