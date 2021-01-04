@@ -1,6 +1,6 @@
 ---
 - name: Install Apache Tomcat on Ubuntu 18.04 and Centos7
-  hosts: webserver
+  hosts: appserver
   become: yes
   tasks:
     - name: Step 1 — Install Java
