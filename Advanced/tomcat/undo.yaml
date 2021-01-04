@@ -1,0 +1,11 @@
+---
+- name: UnInstall Apache Tomcat on Ubuntu 18.04 and Centos7
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Step 1 — unInstall Java
+      apt:
+        name: default-jdk
+        update_cache: yes
+        state: absent
+      when: ansible_facts['os_family'] == "Debian"
