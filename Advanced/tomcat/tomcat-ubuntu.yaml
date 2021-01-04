@@ -15,7 +15,7 @@
       get_url: url="https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz" dest="/tmp/apache-tomcat-9.0.41.tar.gz"
     
     - name: Step 5 - extract the archive to /opt/tomcat directory
-      unarchive: src="/tmp/apache-tomcat-9.0.41.tar.gz" dest="/opt/tomcat"
+      unarchive: src="/tmp/apache-tomcat-9.0.41.tar.gz" creates="/opt/tomcat"
 
     - name: Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
       file: path="/opt/tomcat" state=directory recurse=yes owner=tomcat group=tomcat
