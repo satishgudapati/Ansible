@@ -15,7 +15,7 @@
     - name: Step 2 — Create Tomcat Group
       group:
         name: tomcat
-        state: abesent
+        state: absent
       when: ansible_facts['os_family'] == "Debian"
 
     - name: Step 1 — unInstall Java
