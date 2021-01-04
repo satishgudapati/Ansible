@@ -8,7 +8,7 @@
         name: default-jdk
         update_cache: yes
         state: present
-      when: ansible_facts['distribution'] == "Debian"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Step 1 — Install Java on Centos7
       yum:
@@ -29,7 +29,7 @@
         home: /opt/tomcat
         shell: "/bin/false"
         state: present
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_facts['os_family'] == "Ubuntu"
 
     - name: Step 3 — Create Tomcat User in CentOS7
       user:
@@ -44,7 +44,7 @@
       get_url:
         url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
         dest: /tmp/apache-tomcat-9.0.41.tar.gz
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_facts['os_family'] == "Ubuntu"
 
     - name: Step 4 — Download Tomcat tar file
       get_url:
