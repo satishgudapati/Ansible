@@ -41,5 +41,17 @@
         path: conf
         state: directory
         recurse: yes
-        mode: 
-        
+        owner: tomcat
+        group: tomcat
+        mode: g=rx
+    
+    - name: Step 8 Make the tomcat user the owner of the webapps, work, temp, and logs directories
+      file:
+        path:
+          - webapps/
+          - work/
+          - temp/
+          - logs/
+        state: directory
+        owner: tomcat
+        group: tomcat
