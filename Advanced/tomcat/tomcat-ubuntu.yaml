@@ -3,10 +3,14 @@
   hosts: appserver
   become: yes
   tasks:
-    - name: Step 1 — Install Java
-      package: name=default-jdk state=present
+    - name: Step 1 — Install Java on Ubuntu
+      apt: name=default-jdk state=present update_cache=yes
       when: ansible_facts['os_family'] == "Debian"
-    
+
+    - name: Step 1 — Install Java on centos7
+      yum: name=java-1.7.0-openjdk-devel state=present update_cache=yes
+      when: ansible_facts['os_family'] == "CentOS"
+
     - name: Step 2 — Create Tomcat Group
       group: name=tomcat state=present
       when: ansible_facts['os_family'] == "Debian"
