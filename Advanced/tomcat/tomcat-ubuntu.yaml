@@ -13,24 +13,24 @@
 
     - name: Step 2 — Create Tomcat Group
       group: name=tomcat state=present
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
     
     - name: Step 3 — Create Tomcat User
       user: name=tomcat group=tomcat home="/opt/tomcat" shell="/bin/false"
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
     
     - name: Step 4 - extract the archive to /opt/tomcat directory (Downloading and installing)
       unarchive: src=https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz dest=/opt/tomcat remote_src=yes
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
 
     - name: Step 5 - Update permissions (Give the tomcat group ownership over the entire installation directory)
       file: path=/opt/tomcat state=directory recurse=yes owner=tomcat group=tomcat
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
 
 
     - name: Step 7 give the tomcat group read access to the conf directory and all of its contents, and execute access to the directory itself
       file: path=/conf state=directory recurse=yes owner=tomcat group=tomcat mode=g=rx
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
     
     - name: Step 8 Make the tomcat user the owner of the webapps, work, temp, and logs directories
       file:
@@ -42,4 +42,4 @@
         state: directory
         owner: tomcat
         group: tomcat
-      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_os_family == "Debian"
