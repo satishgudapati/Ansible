@@ -1,7 +1,10 @@
 ---
 - name: Install Apache Tomcat on Ubuntu 18.04 and Centos7
   hosts: appserver
+  vars_files:
+    - /vars/tomcat_vars.yaml
   become: yes
+
   tasks:
     - name: Step 1 — Install Java on Ubuntu
       apt: name=default-jdk state=present update_cache=yes
@@ -23,11 +26,11 @@
       when: ansible_os_family == "RedHat"
     
     - name: Step 4 - extract the archive to /opt/tomcat directory (Downloading and installing) in ubuntu
-      unarchive: src=https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz dest=/opt/tomcat remote_src=yes
+      unarchive: src="{{tomcat_source.ubuntu}}" dest="{{tomcat_destination.ubuntu}}" remote_src=yes
       when: ansible_os_family == "Debian"
 
     - name: Step 4 - extract the archive to /opt/tomcat directory (Downloading and installing) in centos7
-      unarchive: src=https://downloads.apache.org/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.tar.gz dest=/opt/tomcat remote_src=yes
+      unarchive: src="{{tomcat_source.centos}}" dest="{{tomcat_destination.centos}}" remote_src=yes
       when: ansible_os_family == "RedHat"
 
     - name: Step 5 - Update permissions (Give the tomcat group ownership over the entire installation directory)
