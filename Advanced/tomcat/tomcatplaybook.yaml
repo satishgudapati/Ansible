@@ -2,7 +2,7 @@
 - name: Install Apache Tomcat on Ubuntu 18.04 and Centos7
   hosts: appserver
   vars_files:
-    - /vars/tomcat_vars.yaml
+    - /home/ansible/Ansible/Advanced/tomcat/vars/tomcat_vars.yaml
   become: yes
 
   tasks:
