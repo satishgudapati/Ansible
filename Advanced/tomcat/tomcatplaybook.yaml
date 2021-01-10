@@ -51,9 +51,6 @@
         group: tomcat
     - name: Step 9 — Create a systemd Service File
       copy: src=./tomcat.service dest=/etc/systemd/system/tomcat.service
-      notify: 
-        - Reload the systemd daemon
 
-  handlers:
     - name: Reload the systemd daemon
       systemd: daemon_reload=yes
