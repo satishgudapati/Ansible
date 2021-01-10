@@ -51,11 +51,11 @@
         group: tomcat
     - name: Step 9 — Create a systemd Service File
       copy: src=./tomcat.service dest=/etc/systemd/system/tomcat.service
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "Debian"
 
     - name: Reload the systemd daemon
       systemd: daemon_reload=yes
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "Debian"
     - name: Start the Tomcat service
       service: name=tomcat state=started enabled=yes
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "Debian"
