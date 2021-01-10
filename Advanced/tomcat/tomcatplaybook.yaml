@@ -54,3 +54,5 @@
 
     - name: Reload the systemd daemon
       systemd: daemon_reload=yes
+    - name: Start the Tomcat service
+      service: name=tomcat state=started enabled=yes
