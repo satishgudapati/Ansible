@@ -54,6 +54,6 @@
       notify: 
         - Reload the systemd daemon
 
-    handlers:
-      - name: Reload the systemd daemon
-        systemd: daemon_reload=yes name=tomcat enabled=yes state=started
+  handlers:
+    - name: Reload the systemd daemon
+      systemd: daemon_reload=yes name=tomcat enabled=yes state=started
