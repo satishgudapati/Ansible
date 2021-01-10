@@ -26,13 +26,11 @@
       when: ansible_os_family == "RedHat"
     
     - name: Step 4 - extract the archive to /opt/tomcat directory (Downloading and installing) in ubuntu
-      unarchive: src="{{tomcat_source.ubuntu}}" dest="{{tomcat_destination.ubuntu}}" remote_src=yes
-      creates: "{{tomcat_destination.ubuntu}}"
+      unarchive: src="{{tomcat_source.ubuntu}}" dest="{{tomcat_destination.ubuntu}}" remote_src=yes creates="{{tomcat_destination.ubuntu}}"
       when: ansible_os_family == "Debian"
 
     - name: Step 4 - extract the archive to /opt/tomcat directory (Downloading and installing) in centos7
-      unarchive: src="{{tomcat_source.centos}}" dest="{{tomcat_destination.centos}}" remote_src=yes
-      creates: "{{tomcat_destination.centos}}"
+      unarchive: src="{{tomcat_source.centos}}" dest="{{tomcat_destination.centos}}" remote_src=yes creates="{{tomcat_destination.centos}}"
       when: ansible_os_family == "RedHat"
 
     - name: Step 5 - Update permissions (Give the tomcat group ownership over the entire installation directory)
