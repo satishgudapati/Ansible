@@ -5,5 +5,5 @@ tomcat_destination:
   ubuntu: /opt/tomcat
   centos: /opt/tomcat
 tomcat_path:
-  ubuntu: /opt/tomcat/apache-tomcat-9.0.41.tar.gz
-  centos: /opt/tomcat/apache-tomcat-8.5.61.tar.gz
+  ubuntu: /opt/tomcat/apache-tomcat-9.0.41
+  centos: /opt/tomcat/apache-tomcat-8.5.61
