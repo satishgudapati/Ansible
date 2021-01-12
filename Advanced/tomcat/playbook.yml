@@ -7,7 +7,7 @@
     - ./vars/vars.yml
   tasks:
     - name: Step 1 — update ubuntu packages
-      apt: update_cache=yes name=unzip state=present
+      apt: update_cache=yes name=tar state=present
 
     - name: Step 2 — Install Java on ubuntu 18.04
       apt: name=default-jdk state=present
