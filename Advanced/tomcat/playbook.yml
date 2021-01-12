@@ -4,7 +4,7 @@
   become: yes
   become_method: sudo
   vars_files:
-    - /vars/vars.yml
+    - ./vars/vars.yml
   tasks:
     - name: Step 1 — update ubuntu packages
       apt: upgrade=yes update_cache=yes
