@@ -10,7 +10,7 @@
       apt: update_cache=yes name=tar state=present
 
     - name: Step 2 — Install Java on ubuntu 18.04
-      apt: name=default-jdk state=present
+      apt: name=default-jdk state=present update_cache=yes
 
     - name: Step 3 — Create Tomcat Group
       group: name=tomcat state=present
