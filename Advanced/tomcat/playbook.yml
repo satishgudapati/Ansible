@@ -31,7 +31,16 @@
       file: path=/conf state=directory recurse=no owner=tomcat group=tomcat mode="g=x"
     
     - name: Step 9 Make the tomcat user the owner of the webapps, work, temp, and logs directories
-      file: path=[webapps/ work/ temp/ logs/] state=directory owner=tomcat group=tomcat recurse=yes
+      file:
+        path:
+          - webapps/
+          - work/
+          - temp/
+          - logs/
+        state: directory
+        owner: tomcat
+        group: tomcat
+        recurse: yes
 
     - name: Step 10 Create a systemd Service File
       copy: src=tomcat.service dest=/etc/systemd/system/
