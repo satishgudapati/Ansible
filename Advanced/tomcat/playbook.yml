@@ -52,7 +52,7 @@
 
 
   handlers:
-      - name: Step 11 Reload the systemd daemon
+    - name: Step 11 Reload the systemd daemon
       systemd:
         name: tomcat
         state: started
