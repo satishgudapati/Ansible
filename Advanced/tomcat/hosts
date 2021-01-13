@@ -4,6 +4,7 @@ localhost
 
 [ubuntu]
 172.31.37.240 ansible_user=node-2
+172.31.45.242 ansible_user=node-3
 
 [webserver]
 localhost
