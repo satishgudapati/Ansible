@@ -139,7 +139,7 @@
         - Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
         - Step 7 give the tomcat group read access to the conf directory and all of its contents
         - Step 8 give the tomcat group execute access to the directory itself
-        - Step 9 Make the tomcat user the owner of the webapps, work, temp, and logs directoriesgit 
+        - Step 9 Make the tomcat user the owner of the webapps, work, temp, and logs directories 
 
 
     - name: Step 10 Create a systemd Service File
