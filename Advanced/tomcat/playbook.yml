@@ -35,6 +35,29 @@
         dest: "{{tomcat_destination.ubuntu}}"
         remote_src: yes
         extra_opts: [--strip-components=1]
+        creates: "{{tomcat_path.ubuntu}}"
+      notify:
+        - Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
+        - Step 7 give the tomcat group read access to the conf directory and all of its contents
+        - Step 8 give the tomcat group execute access to the directory itself
+        - Step 9 Make the tomcat user the owner of the webapps, work, temp, and logs directories
+
+
+    - name: Step 10 Create a systemd Service File
+      copy:
+        src: ./ubuntu/tomcat.service
+        dest: /etc/systemd/system/
+      notify:
+        - Step 11 Reload the systemd daemon
+
+
+  handlers:
+      - name: Step 11 Reload the systemd daemon
+      systemd:
+        name: tomcat
+        state: started
+        enabled: true
+        daemon_reload: yes
 
     - name: Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
       file:
@@ -74,18 +97,7 @@
         owner: tomcat
         group: tomcat
         recurse: yes
-
-    - name: Step 10 Create a systemd Service File
-      copy:
-        src: ./ubuntu/tomcat.service
-        dest: /etc/systemd/system/
-
-    - name: Step 11 Reload the systemd daemon
-      systemd:
-        name: tomcat
-        state: started
-        enabled: true
-        daemon_reload: yes
+    
 
 - name: Install Apache Tomcat on Centos7
   hosts: appserver:&centos:!ubuntu
@@ -122,7 +134,24 @@
         dest: "{{tomcat_destination.centos}}"
         remote_src: yes
         extra_opts: [--strip-components=1]
+        creates: "{{tomcat_path.centos}}"
+      notify:
+        - Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
+        - Step 7 give the tomcat group read access to the conf directory and all of its contents
+        - Step 8 give the tomcat group execute access to the directory itself
+        - Step 9 Make the tomcat user the owner of the webapps, work, temp, and logs directoriesgit 
 
+
+    - name: Step 10 Create a systemd Service File
+      copy:
+        src: ./centos/tomcat.service
+        dest: /etc/systemd/system/
+      notify:
+        - Step 11 Reload the systemd daemon
+
+
+
+  handlers:
     - name: Step 6 - Update permissions (Give the tomcat group ownership over the entire installation directory)
       file:
         path: /opt/tomcat
@@ -161,11 +190,6 @@
         owner: tomcat
         group: tomcat
         recurse: yes
-
-    - name: Step 10 Create a systemd Service File
-      copy:
-        src: ./centos/tomcat.service
-        dest: /etc/systemd/system/
 
     - name: Step 11 Reload the systemd daemon
       systemd:
