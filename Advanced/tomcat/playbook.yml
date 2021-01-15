@@ -44,9 +44,9 @@
 
 
     - name: Step 10 Create a systemd Service File
-      copy:
-        src: ./ubuntu/tomcat.service
-        dest: /etc/systemd/system/
+      template:
+        src: ./ubuntu/tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
       notify:
         - Step 11 Reload the systemd daemon
 
@@ -143,9 +143,9 @@
 
 
     - name: Step 10 Create a systemd Service File
-      copy:
-        src: ./centos/tomcat.service
-        dest: /etc/systemd/system/
+      template:
+        src: ./centos/tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
       notify:
         - Step 11 Reload the systemd daemon
 
