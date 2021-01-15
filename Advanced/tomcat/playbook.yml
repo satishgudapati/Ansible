@@ -131,7 +131,7 @@
     - name: Step 5 - extract the archive to /opt/tomcat directory (Downloading and installing) in Centos7
       unarchive:
         src: "{{tomcat_source.centos}}"
-        dest: "{{tomcat_destination.centos}}"
+        dest: "{{tomcat_destination}}"
         remote_src: yes
         extra_opts: [--strip-components=1]
         creates: "{{tomcat_path.centos}}"
