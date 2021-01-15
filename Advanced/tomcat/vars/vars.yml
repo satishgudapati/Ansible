@@ -1,9 +1,14 @@
+---
 tomcat_source:
   ubuntu: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
   centos: https://downloads.apache.org/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.tar.gz
-tomcat_destination:
-  ubuntu: /opt/tomcat
-  centos: /opt/tomcat
+
+tomcat_destination: /opt/tomcat
+
 tomcat_path:
   ubuntu: /opt/tomcat/apache-tomcat-9.0.41
   centos: /opt/tomcat/apache-tomcat-8.5.61
+
+java_path:
+  ubuntu: /usr/lib/jvm/java-1.11.0-openjdk-amd64
+  centos: /usr/lib/jvm/jre
