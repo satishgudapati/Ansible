@@ -2,13 +2,14 @@
 - name: UnInstall Apache Tomcat on Ubuntu 18.04 and Centos7
   hosts: appserver
   become: yes
+  become_method: sudo
   tasks:
     - name: Step 3 — Destroy Tomcat User
       user:
         name: tomcat
         group: tomcat
         home: /opt/tomcat
-        shell: "/bin/false"
+        shell: {{'/bin/false' if ansible_os_family=='Debian' else '/bin/nologin'}}
         state: absent
 
     - name: Step 2 — Destroy Tomcat Group
