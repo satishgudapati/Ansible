@@ -9,7 +9,7 @@
         name: tomcat
         group: tomcat
         home: /opt/tomcat
-        shell: "{{'/bin/false' if ansible_os_family=='Debian' else '/bin/nologin'}}"
+        shell: "{{'/bin/false' if not ansible_distribution == 'CentOS' else '/bin/nologin'}}"
         state: absent
         remove: yes
         force: yes
