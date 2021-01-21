@@ -1,0 +1,13 @@
+# Application servers
+[app]
+localhost
+172.31.44.186 ansible_user=node-1
+
+# Database servers
+[db]
+172.31.37.240 ansible_user=node-2
+
+# Group multi with all servers
+[multi:children]
+app
+db
