@@ -1,0 +1,26 @@
+---
+- hosts: app
+  become: yes
+
+  vars:
+    node_apps_location: /usr/local/opt/node
+  
+  tasks:
+    - name: Ensure Node.js app folder exists.
+      file: "path={{ node_apps_location }} state=absent"
+
+    - name: Install Forever to (to run our Node.js app)
+      npm: name=forever global=yes state=absent
+
+    - name: Install node.js and npm.
+      yum: name=npm state=absent enablerepo=epel
+
+    - name: Install Remi repo
+      yum:
+        name: "https://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+        state: absent
+
+    - name: Import Remi GPG key.
+      rpm_key:
+        key: "https://rpms.remirepo.net/RPM-GPG-KEY-remi"
+        state: absent
