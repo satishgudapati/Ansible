@@ -50,7 +50,7 @@
           - libapache2-mod-php7.4
           - python3-mysqldb
           - mysql-server
-          - python3-pip
+          - python-pip
 
     - name: Make sure pymysql is present
       pip:
