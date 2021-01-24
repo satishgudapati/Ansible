@@ -98,7 +98,7 @@
 
     - name: Create a MySQL user for Drupal.
       mysql_user:
-        name: {{domain}}
+        name: "{{domain}}"
         password: 1234
         priv: "{{domain}}.*:ALL"
         host: localhost
