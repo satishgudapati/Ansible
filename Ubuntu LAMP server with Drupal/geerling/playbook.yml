@@ -100,7 +100,7 @@
 
     - name: Create a MySQL database for Drupal.
       mysql_db:
-        db: {{domain}}
+        db: "{{domain}}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
         state: present
 
