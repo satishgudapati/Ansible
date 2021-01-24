@@ -102,7 +102,7 @@
     - name: Create a MySQL database for Drupal.
       mysql_db:
         db: "{{domain}}"
-        login_unix_socket: /var/run/mysqld/mysqld.sock
+        #login_unix_socket: /var/run/mysqld/mysqld.sock
         state: present
 
     - name: Create a MySQL user for Drupal.
