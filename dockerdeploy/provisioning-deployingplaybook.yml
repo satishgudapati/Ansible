@@ -1,0 +1,32 @@
+---
+# This plabook configures the deployment server to run docker container by ansible
+# also run our springpetclinic application in docker container
+- name: Provsiong of server and deploying spring petclinic with docker
+  hosts: dev
+  become: yes
+  tasks:
+    # This task installs docker and python-pip module into deployment server
+    - name: Install docker and python-pip
+      yum:
+        name:
+          - docker
+          - python-pip
+        state: present
+    
+    - name: Starting and enabling docker
+      service:
+        name: docker
+        state: started
+        enabled:  yes
+    
+    - name: Installing docker-py module using pip
+      pip:
+        name: docker-py
+        state: present
+    
+    - name: Deploying or Running docker container
+      docker_container:
+        name: springpetclinic
+        image: satish200691/springpetclinic:{{DOCKER_TAG}}
+        state: started
+        publish_ports: 0.0.0.0:8080:8080
