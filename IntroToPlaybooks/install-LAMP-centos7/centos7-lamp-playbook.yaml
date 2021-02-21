@@ -1,4 +1,5 @@
 ---
+# This play book installs the LAMP stack on centos7
 - name: install lamp on centos7
   hosts: all
   become: yes
